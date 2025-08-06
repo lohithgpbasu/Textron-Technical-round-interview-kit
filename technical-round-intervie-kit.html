@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textron IT Technical Interview Kit - Advanced</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .card {
+            transition: box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .card:hover {
+             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+        .details.show {
+            max-height: 2000px; /* Increased for more content */
+        }
+        .toggle-btn {
+            transition: transform 0.3s ease;
+        }
+        .toggle-btn.rotate {
+            transform: rotate(180deg);
+        }
+        .code-block {
+            white-space: pre-wrap;
+        }
+        .resource-link {
+            transition: color 0.2s ease;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8 bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-gray-200">
+
+    <div class="max-w-5xl mx-auto relative">
+        <!-- Theme Toggle Button -->
+        <div class="absolute top-0 right-0 z-10">
+            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414-1.414l-.707-.707zM5 11a1 1 0 100-2H4a1 1 0 100 2h1zM8 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm8-8a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0z"></path></svg>
+            </button>
+        </div>
+
+        <!-- Header -->
+        <header class="text-center mb-10 pt-8">
+            <h1 class="text-3xl sm:text-4xl font-bold">Technical Interview Kit</h1>
+            <p class="text-lg text-blue-700 dark:text-blue-400 mt-2">Textron IT Technical Round - M.Tech Level</p>
+        </header>
+
+        <!-- Section: Company Insights -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 border-b-2 border-blue-500 pb-2 mb-6">Company Insights</h2>
+            <div class="card p-6 bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- About Textron -->
+                    <div class="md:col-span-2">
+                        <h3 class="text-xl font-semibold mb-3">About Textron</h3>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                            <li><i class="fas fa-globe w-5 mr-2 text-blue-500"></i>A global multi-industry company founded in 1923.</li>
+                            <li><i class="fas fa-building w-5 mr-2 text-blue-500"></i>Headquartered in Providence, Rhode Island, USA.</li>
+                            <li><i class="fas fa-users w-5 mr-2 text-blue-500"></i>~35,000 employees across 25+ countries.</li>
+                            <li class="pt-2"><strong>Key Brands:</strong> Bell <i class="fas fa-helicopter mx-1"></i>, Textron Aviation <i class="fas fa-plane mx-1"></i>, Textron Systems <i class="fas fa-shield-halved mx-1"></i>, Kautex, and more.</li>
+                        </ul>
+                    </div>
+                    <!-- Why Join -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">Why Join Textron?</h3>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                            <li><i class="fas fa-lightbulb w-5 mr-2 text-yellow-500"></i>Exposure to multi-industry innovation.</li>
+                            <li><i class="fas fa-cogs w-5 mr-2 text-gray-500"></i>Work with modern engineering & tech solutions.</li>
+                             <li><i class="fas fa-handshake w-5 mr-2 text-green-500"></i>Strong culture of learning and teamwork.</li>
+                            <li><i class="fas fa-map-marked-alt w-5 mr-2 text-red-500"></i>Global career opportunities.</li>
+                        </ul>
+                    </div>
+                </div>
+                 <!-- Textron India -->
+                <div class="mt-6 pt-6 border-t border-gray-200 dark:border-slate-700">
+                     <h3 class="text-xl font-semibold mb-3">Textron India <span class="text-sm font-normal">(Bangalore)</span></h3>
+                     <p class="text-gray-600 dark:text-gray-400">Established in 2004, the Bangalore center is a hub for engineering and technology solutions, providing critical support to Textron's diverse business units worldwide.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Advanced Topics -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 border-b-2 border-blue-500 pb-2 mb-6">Advanced Topics: M.Tech Deep Dive</h2>
+            <div class="space-y-6" id="advanced-topics-section">
+                <!-- Advanced cards will be injected here by JS -->
+            </div>
+        </section>
+
+        <!-- Section: Foundational Concepts -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 border-b-2 border-blue-500 pb-2 mb-6">Foundational Concepts: Click to Expand</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="cheat-sheet-grid">
+                <!-- Foundational cards will be injected here by JS -->
+            </div>
+        </section>
+
+        <!-- Section: Calmness & Confidence Tips -->
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 border-b-2 border-blue-500 pb-2 mb-6">Calmness & Confidence Tips</h2>
+            <div class="space-y-4">
+                <div class="card p-5 bg-white dark:bg-slate-800 border-l-4 border-blue-500">
+                    <h3 class="font-semibold">Handle Unknown Questions</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">Frame it positively: "That's a great question. While I haven't used that specific tool, my experience with [related concept] suggests I would..."</p>
+                </div>
+                 <div class="card p-5 bg-white dark:bg-slate-800 border-l-4 border-blue-500">
+                    <h3 class="font-semibold">Think Aloud</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">Articulate your thought process. It shows the interviewer how you approach problems, even if you don't know the final answer immediately.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- DATA ---
+        const advancedData = [
+            {
+                icon: 'fa-microchip',
+                title: 'Advanced Operating Systems',
+                concepts: [
+                    { term: 'Virtual Memory & Paging', details: 'The OS creates an illusion of vast, private memory for each process. The Memory Management Unit (MMU) translates virtual to physical addresses via page tables. Key concepts: <strong>Demand Paging</strong>, <strong>Page Fault Handling</strong>, and page replacement algorithms (<strong>LRU, LFU</strong>). The <strong>Translation Lookaside Buffer (TLB)</strong> is a hardware cache that speeds up these translations.' },
+                    { term: 'Kernel vs. User-level Threads', details: '<strong>User-level threads</strong> are managed by a library, making them fast but a blocking call in one thread blocks the entire process. <strong>Kernel-level threads</strong> are managed by the OS; they are slower to create, but a blocking call does not affect other threads in the process, which is crucial for high-concurrency servers.' },
+                    { term: 'Advanced CPU Scheduling', details: '<strong>Multilevel Feedback Queue Scheduling</strong> moves processes between priority queues to prevent starvation and balance I/O-bound and CPU-bound jobs. For multi-core systems, concepts like <strong>processor affinity</strong> (keeping a process on the same core) and <strong>load balancing</strong> are critical.' }
+                ],
+                resources: [
+                    { name: 'OSTEP: Virtual Memory (PDF)', url: 'https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf' },
+                    { name: 'GeeksForGeeks: Kernel vs. User Threads', url: 'https://www.geeksforgeeks.org/operating-systems/difference-between-user-level-thread-and-kernel-level-thread/' }
+                ],
+                qa: [
+                    { level: 'Intermediate', color: 'yellow', question: 'Describe the steps the OS and hardware take to handle a page fault.', answer: '1. CPU tries to access a memory address, but the MMU finds the page table entry is invalid. 2. The MMU triggers a trap (page fault) to the OS. 3. The OS finds the required page on disk. 4. It loads the page into a free frame in physical memory. 5. The page table is updated with the new frame number and the valid bit is set. 6. The instruction that caused the fault is restarted.' },
+                    { level: 'Hard', color: 'red', question: 'For a high-I/O web server, would you prefer user-level or kernel-level threads? Justify your choice.', answer: '<strong>Kernel-level threads</strong> are strongly preferred. While user-level threads are faster to create, a single blocking I/O call (e.g., reading a file, waiting for a network request) would block the entire process, freezing all other connections. With kernel-level threads, the OS can simply schedule another thread to run while one is blocked on I/O, allowing the server to handle thousands of concurrent connections efficiently.' }
+                ]
+            },
+            {
+                icon: 'fa-sitemap',
+                title: 'Advanced DBMS & Data Systems',
+                concepts: [
+                    { term: 'Concurrency Control Protocols', details: 'These protocols implement ACID\'s "Isolation". <strong>Two-Phase Locking (2PL)</strong> ensures serializability by acquiring all locks before releasing any, but can deadlock. <strong>Timestamp Ordering</strong> assigns unique timestamps to transactions to determine serializability order, avoiding deadlocks but can cause transaction rollbacks.' },
+                    { term: 'Database Indexing (B+ Trees)', details: 'B+ Trees are ideal for database indexes because they keep data sorted and allow efficient range queries. All leaf nodes are at the same level and are linked like a linked list, enabling fast sequential scans. This is far superior to a simple B-Tree or Hash Index for typical database workloads.' },
+                    { term: 'Query Optimization', details: 'The database uses statistics to create an optimal execution plan. It considers different join orders, join algorithms (<strong>Nested Loop, Hash Join, Merge Join</strong>), and index usage. You can inspect this plan using the `EXPLAIN` command to diagnose slow queries.' }
+                ],
+                resources: [
+                    { name: 'B+ Tree Visualization', url: 'https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html' },
+                    { name: 'PostgreSQL EXPLAIN Explained', url: 'https://www.postgresqltutorial.com/postgresql-explain/' }
+                ],
+                qa: [
+                    { level: 'Intermediate', color: 'yellow', question: 'Explain why a B+ Tree is efficient for range queries (e.g., `WHERE age > 30`).', answer: 'Once the index is used to find the first entry (`age = 31`), the database can simply follow the linked list of leaf nodes to retrieve all subsequent entries that satisfy the condition. It doesn\'t need to traverse the tree again for each value in the range, making it highly efficient.' },
+                    { level: 'Hard', color: 'red', question: 'Compare Two-Phase Locking (2PL) with Timestamp Ordering. In what scenario might one be preferable?', answer: '<strong>2PL</strong> provides high consistency and avoids cascading aborts (with Strict 2PL) but is prone to deadlocks. It\'s good for systems where deadlocks are rare or can be tolerated. <strong>Timestamp Ordering</strong> is deadlock-free but can suffer from starvation if a long transaction is repeatedly rolled back. It might be preferred in systems with many short, non-conflicting transactions where the overhead of lock management is undesirable.' }
+                ]
+            },
+            {
+                icon: 'fa-cloud',
+                title: 'Distributed Systems & Architecture',
+                concepts: [
+                    { term: 'CAP Theorem', details: 'A distributed system can only have two of three guarantees: <strong>Consistency</strong>, <strong>Availability</strong>, and <strong>Partition Tolerance</strong>. Since network partitions are a reality, the trade-off is between Consistency and Availability. NoSQL databases are often categorized by this trade-off (e.g., Cassandra is AP, many RDBMS are CP).' },
+                    { term: 'Load Balancing Strategies', details: 'Beyond Round Robin: <strong>Least Connections</strong> directs traffic to the server with fewest active connections. <strong>IP Hash</strong> ensures a user stays on the same server (session persistence). <strong>Layer 4</strong> balancers are fast (TCP level), while <strong>Layer 7</strong> balancers are smarter (HTTP level), making decisions based on headers or URLs.' },
+                    { term: 'REST vs. gRPC', details: '<strong>REST</strong> is an architectural style using standard HTTP methods and JSON. It\'s stateless and human-readable. <strong>gRPC</strong> is a high-performance RPC framework using HTTP/2 and Protocol Buffers. It offers bidirectional streaming and is excellent for low-latency microservices communication.' }
+                ],
+                resources: [
+                    { name: 'IBM: The CAP Theorem', url: 'https://www.ibm.com/think/topics/cap-theorem' },
+                    { name: 'gRPC Official Docs: Introduction', url: 'https://grpc.io/docs/what-is-grpc/introduction/' }
+                ],
+                qa: [
+                    { level: 'Intermediate', color: 'yellow', question: 'You are designing an e-commerce site. Would you use a Layer 4 or Layer 7 load balancer?', answer: 'A <strong>Layer 7</strong> load balancer is better. It allows for more intelligent routing. For example, you could route requests for `/api` to your backend servers, `/images` to a CDN, and maintain session persistence for a user\'s shopping cart using cookies, all of which a Layer 4 balancer cannot do.' },
+                    { level: 'Hard', color: 'red', question: 'Your company is building a new financial trading platform where low latency is critical. Would you recommend REST or gRPC for inter-service communication?', answer: '<strong>gRPC</strong> is the clear choice. Its use of HTTP/2 and binary serialization (Protocol Buffers) results in significantly lower latency and smaller message sizes compared to REST with JSON. The support for bidirectional streaming is also a huge advantage for real-time data feeds, which are common in trading platforms.' }
+                ]
+            }
+        ];
+
+        const foundationalData = [
+            { icon: 'fa-cogs', title: 'Operating Systems', points: [{ term: 'Process vs Thread', analogy: 'Process is a restaurant, threads are waiters.' }, { term: 'Deadlock', analogy: 'Two cars on a one-way bridge.' }, { term: 'Scheduling', analogy: 'FCFS, SJF, Round Robin.' }] },
+            { icon: 'fa-database', title: 'DBMS', points: [{ term: 'ACID Properties', analogy: 'A railway booking system.' }, { term: 'Normalization', analogy: 'Organizing a messy closet.' }, { term: 'SQL Joins', analogy: 'Combining different tables.' }] },
+            { icon: 'fa-network-wired', title: 'Networking', points: [{ term: 'OSI Layers', analogy: 'Sending a letter via postal service.' }, { term: 'TCP vs UDP', analogy: 'TCP is a phone call; UDP is a postcard.' }] },
+            { icon: 'fa-code', title: 'Programming (OOP)', points: [{ term: 'Encapsulation', analogy: 'Driving a car.' }, { term: 'Inheritance', analogy: 'A Sports Car is a Car.' }, { term: 'Polymorphism', analogy: 'One "drive" action for all vehicles.' }] }
+        ];
+
+        // --- RENDER FUNCTIONS ---
+        const advancedSection = document.getElementById('advanced-topics-section');
+        advancedData.forEach(item => advancedSection.innerHTML += createAdvancedCard(item));
+
+        const foundationalGrid = document.getElementById('cheat-sheet-grid');
+        foundationalData.forEach(item => foundationalGrid.innerHTML += createFoundationalCard(item));
+
+        setupThemeToggle();
+    });
+
+    function createAdvancedCard(item) {
+        let conceptsHtml = item.concepts.map(c => `<div class="mt-3"><strong class="text-gray-700 dark:text-gray-300">${c.term}</strong><p class="text-sm">${c.details}</p></div>`).join('');
+        let resourcesHtml = item.resources.map(r => `<li><a href="${r.url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline resource-link">${r.name} <i class="fas fa-external-link-alt text-xs"></i></a></li>`).join('');
+        let qaHtml = item.qa.map(q => `
+            <div class="mt-4 pt-3 border-t border-gray-200 dark:border-slate-700">
+                <div class="flex justify-between items-start gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase text-${q.color}-600 bg-${q.color}-100 dark:text-${q.color}-300 dark:bg-${q.color}-900/50 px-2 py-1 rounded-full">${q.level}</span>
+                        <p class="font-semibold mt-2">${q.question}</p>
+                    </div>
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-lg text-xs flex-shrink-0" onclick="toggleAnswer(this, event)">Reveal</button>
+                </div>
+                <div class="details mt-2 text-sm text-gray-600 dark:text-gray-400"><p>${q.answer}</p></div>
+            </div>
+        `).join('');
+
+        return `
+            <div class="card p-5 cursor-pointer bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700" onclick="toggleCard(this)">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="icon-bg bg-blue-100 dark:bg-slate-700 text-blue-800 dark:text-blue-300 mr-4"><i class="fas ${item.icon} text-2xl"></i></div>
+                        <h3 class="text-xl font-semibold">${item.title}</h3>
+                    </div>
+                    <button class="toggle-btn text-gray-400 dark:text-gray-500 text-xl"><i class="fas fa-chevron-down"></i></button>
+                </div>
+                <div class="details mt-4">
+                    <div class="p-4 bg-gray-50 dark:bg-slate-800/50 rounded-lg">
+                        <h4 class="font-semibold text-md mb-2">Key Concepts</h4>
+                        ${conceptsHtml}
+                    </div>
+                    <div class="mt-4 p-4 bg-gray-50 dark:bg-slate-800/50 rounded-lg">
+                        <h4 class="font-semibold text-md mb-2">Resource Links</h4>
+                        <ul class="list-disc list-inside space-y-1">${resourcesHtml}</ul>
+                    </div>
+                    <div class="mt-4 p-4 bg-gray-50 dark:bg-slate-800/50 rounded-lg">
+                        <h4 class="font-semibold text-md mb-2">Q&A Simulation</h4>
+                        ${qaHtml}
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    function createFoundationalCard(category) {
+        let pointsHtml = category.points.map(p => `<li class="border-t border-gray-200 dark:border-slate-700 pt-3 mt-3"><strong>${p.term}:</strong> ${p.analogy}</li>`).join('');
+        return `
+            <div class="card p-5 cursor-pointer bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700" onclick="toggleCard(this)">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="icon-bg bg-blue-100 dark:bg-slate-700 text-blue-800 dark:text-blue-300 mr-4"><i class="fas ${category.icon} text-2xl"></i></div>
+                        <h3 class="text-xl font-semibold">${category.title}</h3>
+                    </div>
+                    <button class="toggle-btn text-gray-400 dark:text-gray-500 text-xl"><i class="fas fa-chevron-down"></i></button>
+                </div>
+                <div class="details mt-4">
+                    <ul class="text-gray-600 dark:text-gray-300 space-y-0">${pointsHtml}</ul>
+                </div>
+            </div>`;
+    }
+
+    // --- EVENT HANDLERS & HELPERS ---
+    function toggleCard(cardElement) {
+        cardElement.querySelector('.details').classList.toggle('show');
+        cardElement.querySelector('.toggle-btn').classList.toggle('rotate');
+    }
+
+    function toggleAnswer(button, event) {
+        event.stopPropagation(); // Prevent the card from toggling
+        const details = button.parentElement.nextElementSibling;
+        details.classList.toggle('show');
+        button.textContent = details.classList.contains('show') ? 'Hide' : 'Reveal';
+    }
+
+    function setupThemeToggle() {
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        if (document.documentElement.classList.contains('dark')) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+        });
+    }
+
+</script>
+
+</body>
+</html>
