@@ -42,6 +42,8 @@
         }
         .code-block {
             white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.875rem;
         }
         .resource-link {
             transition: color 0.2s ease;
@@ -114,28 +116,115 @@
                 <!-- Foundational cards will be injected here by JS -->
             </div>
         </section>
-
-        <!-- Section 3: Calmness & Confidence Tips -->
-        <section>
-            <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 border-b-2 border-blue-500 dark:border-blue-500 pb-2 mb-6">Calmness & Confidence Tips</h2>
-            <div class="space-y-4">
-                <div class="card p-5 calm-tip bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700">
-                    <h3 class="font-semibold text-gray-800 dark:text-gray-200">Handle Unknown Questions</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mt-1">Frame it positively: "That's a great question. While I haven't used that specific tool, my experience with [related concept] suggests I would..."</p>
-                </div>
-                <div class="card p-5 calm-tip bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700">
-                    <h3 class="font-semibold text-gray-800 dark:text-gray-200">Use the STAR Method</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mt-1">For project answers, describe the <strong class="text-blue-600 dark:text-blue-400">S</strong>ituation, <strong class="text-blue-600 dark:text-blue-400">T</strong>ask, <strong class="text-blue-600 dark:text-blue-400">A</strong>ction, and <strong class="text-blue-600 dark:text-blue-400">R</strong>esult.</p>
-                </div>
-                 <div class="card p-5 calm-tip bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700">
-                    <h3 class="font-semibold text-gray-800 dark:text-gray-200">Think Aloud</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mt-1">Articulate your thought process. It shows the interviewer how you approach problems, even if you don't know the final answer immediately.</p>
-                </div>
-                <div class="card p-5 calm-tip bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700">
-                    <h3 class="font-semibold text-gray-800 dark:text-gray-200">Breathing Technique</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mt-1">Before you start, inhale for 4 seconds, hold for 4, and exhale for 6. It really helps!</p>
+        
+        <!-- Section: Code Snippets -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 border-b-2 border-blue-500 pb-2 mb-6">Code Snippets for Interview</h2>
+            <div class="card p-6 bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Java Column -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Java – OOP Concepts</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 dark:text-gray-300">Encapsulation</h4>
+                                <pre class="code-block mt-2 p-3 rounded-md bg-gray-100 dark:bg-slate-700">public class Train {
+    private String status;
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+}</pre>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 dark:text-gray-300">Inheritance & Polymorphism</h4>
+                                <pre class="code-block mt-2 p-3 rounded-md bg-gray-100 dark:bg-slate-700">class Vehicle {
+    public void move() { System.out.println("Vehicle moves"); }
+}
+class Car extends Vehicle {
+    @Override
+    public void move() { System.out.println("Car drives"); }
+}</pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SQL Column -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">SQL – Database Queries</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 dark:text-gray-300">Aggregation with Having</h4>
+                                <pre class="code-block mt-2 p-3 rounded-md bg-gray-100 dark:bg-slate-700">SELECT train_id, COUNT(booking_id)
+FROM bookings
+GROUP BY train_id
+HAVING COUNT(booking_id) > 50;</pre>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 dark:text-gray-300">Join Query</h4>
+                                <pre class="code-block mt-2 p-3 rounded-md bg-gray-100 dark:bg-slate-700">SELECT p.name, t.train_name
+FROM passengers p
+JOIN bookings b ON p.id = b.passenger_id
+JOIN trains t ON b.train_id = t.id;</pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Python Column -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 mt-4">Python – Examples</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 dark:text-gray-300">Factorial (Recursive)</h4>
+                                <pre class="code-block mt-2 p-3 rounded-md bg-gray-100 dark:bg-slate-700">def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)</pre>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 dark:text-gray-300">Dictionary Usage</h4>
+                                <pre class="code-block mt-2 p-3 rounded-md bg-gray-100 dark:bg-slate-700">train_map = {
+    101: "Bangalore Express",
+    102: "Mysore Mail"
+}
+print(train_map[101])</pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- JavaScript Column -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 mt-4">JavaScript – DOM</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 dark:text-gray-300">Button Click Event</h4>
+                                <pre class="code-block mt-2 p-3 rounded-md bg-gray-100 dark:bg-slate-700">// HTML: &lt;button id="bookBtn"&gt;Book&lt;/button&gt;
+const bookBtn = document.getElementById('bookBtn');
+bookBtn.addEventListener('click', () => {
+    console.log('Booking Confirmed!'); 
+    // In a real app, update the UI here
+});</pre>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Section: Calmness & Confidence Tips -->
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 border-b-2 border-blue-500 pb-2 mb-6">Calmness & Confidence Tips</h2>
+            <div class="space-y-4">
+                <div class="card p-5 bg-white dark:bg-slate-800 border-l-4 border-blue-500">
+                    <h3 class="font-semibold">Handle Unknown Questions</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">Frame it positively: "That's a great question. While I haven't used that specific tool, my experience with [related concept] suggests I would..."</p>
+                </div>
+                 <div class="card p-5 bg-white dark:bg-slate-800 border-l-4 border-blue-500">
+                    <h3 class="font-semibold">Think Aloud</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">Articulate your thought process. It shows the interviewer how you approach problems, even if you don't know the final answer immediately.</p>
+                </div>
+            </div>
+        </section>
     </div>
 
 <script>
